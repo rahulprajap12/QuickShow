@@ -1,5 +1,5 @@
 import { HeartIcon, PlayCircleIcon, StarIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { dummyDateTimeData, dummyShowsData } from "../assets/assets";
 import BlurCircle from "../components/BlurCircle";
@@ -10,6 +10,7 @@ const MovieDetail = () => {
   const { id } = useParams();
 
   const [show, setShow] = useState(null);
+  const dateSelectRef = useRef(null);
 
   const getShow = () => {
     const movie = dummyShowsData.find(
@@ -97,7 +98,10 @@ const MovieDetail = () => {
               Watch Trailer
             </button>
 
-            <button className="bg-primary text-white px-6 py-3 rounded-lg hover:opacity-90 transition">
+            <button
+              onClick={() => dateSelectRef.current?.scrollToTimeSection()}
+              className="bg-primary text-white px-6 py-3 rounded-lg hover:opacity-90 transition"
+            >
               Buy Tickets
             </button>
 
@@ -138,7 +142,7 @@ const MovieDetail = () => {
         </div>
       </div>
 
-      <DateSelect dateTime={show.dateTime} />
+      <DateSelect ref={dateSelectRef} dateTime={show.dateTime} />
 
       {/* Recommended Movies */}
       <div className="mt-20">

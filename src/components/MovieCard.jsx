@@ -35,7 +35,7 @@ const MovieCard = ({movie}) => {
 
           <button
             onClick={() => {
-              navigate(`/movies/${movie.id}/tickets`)
+              navigate(`/movies/${movie.id}`)
               window.scrollTo(0, 0)
             }}
             className="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full text-sm font-medium"

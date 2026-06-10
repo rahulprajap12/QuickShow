@@ -1,8 +1,12 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { formatShowTime } from "../lib/showtime";
 
-const DateSelect = forwardRef(({ dateTime }, ref) => {
+const DateSelect = forwardRef(({ dateTime, movieId }, ref) => {
+  const navigate = useNavigate();
   const timeSectionRef = useRef(null);
   const [selectedDate, setSelectedDate] = useState(dateTime?.[0]?.date ?? null);
+  const [selectedShowId, setSelectedShowId] = useState(null);
 
   useImperativeHandle(ref, () => ({
     scrollToTimeSection: () => {
@@ -13,12 +17,35 @@ const DateSelect = forwardRef(({ dateTime }, ref) => {
   const selectedShowtimes =
     dateTime?.find((item) => item.date === selectedDate)?.times ?? [];
 
-  const formatShowTime = (isoTime) =>
-    new Date(isoTime).toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
+  const goToSeatLayout = (showtime) => {
+    navigate(`/movies/${movieId}/${showtime.showId}`);
+    window.scrollTo(0, 0);
+  };
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+    setSelectedShowId(null);
+  };
+
+  const handleTimeSelect = (showtime) => {
+    setSelectedShowId(showtime.showId);
+  };
+
+  const handleBookNow = () => {
+    const showtime = selectedShowtimes.find(
+      (item) => item.showId === selectedShowId
+    );
+
+    if (!showtime) {
+      timeSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      return;
+    }
+
+    goToSeatLayout(showtime);
+  };
 
   return (
     <div className="mt-20 rounded-2xl border border-primary/20 bg-gradient-to-r from-[#2c0911] to-[#16070a] p-8">
@@ -29,10 +56,10 @@ const DateSelect = forwardRef(({ dateTime }, ref) => {
           </h2>
 
           <div className="flex flex-wrap gap-4">
-            {dateTime?.slice(0, 7).map((item, index) => (
+            {dateTime?.slice(0, 7).map((item) => (
               <button
-                key={index}
-                onClick={() => setSelectedDate(item.date)}
+                key={item.date}
+                onClick={() => handleDateSelect(item.date)}
                 className={`border border-primary text-white rounded-lg px-5 py-3 hover:bg-primary transition ${
                   selectedDate === item.date ? "bg-primary" : ""
                 }`}
@@ -45,15 +72,11 @@ const DateSelect = forwardRef(({ dateTime }, ref) => {
         </div>
 
         <button
-          onClick={() =>
-            timeSectionRef.current?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            })
-          }
-          className="bg-primary text-white px-8 py-3 rounded-lg whitespace-nowrap hover:opacity-90"
+          onClick={handleBookNow}
+          disabled={!selectedShowId}
+          className="bg-primary text-white px-8 py-3 rounded-lg whitespace-nowrap hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Book Now
+          Buy Ticket
         </button>
       </div>
 
@@ -63,10 +86,13 @@ const DateSelect = forwardRef(({ dateTime }, ref) => {
         </h2>
 
         <div className="flex flex-wrap gap-4">
-          {selectedShowtimes.map((showtime, index) => (
+          {selectedShowtimes.map((showtime) => (
             <button
-              key={index}
-              className="border border-primary text-white rounded-lg px-6 py-3 hover:bg-primary transition"
+              key={showtime.showId}
+              onClick={() => handleTimeSelect(showtime)}
+              className={`border border-primary text-white rounded-lg px-6 py-3 hover:bg-primary transition ${
+                selectedShowId === showtime.showId ? "bg-primary" : ""
+              }`}
             >
               {formatShowTime(showtime.time)}
             </button>

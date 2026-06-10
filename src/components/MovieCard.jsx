@@ -2,7 +2,7 @@ import React from 'react'
 import { Star } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
-const MovieCard = (movie) => {
+const MovieCard = ({movie}) => {
   const navigate = useNavigate()
 
   return (

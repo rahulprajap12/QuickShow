@@ -15,23 +15,27 @@ export const assets = {
 }
 
 export const dummyTrailers = [
-    {
-        image: "https://img.youtube.com/vi/WpW36ldAqnM/maxresdefault.jpg",
-        videoUrl: 'https://www.youtube.com/watch?v=WpW36ldAqnM'
-    },
-    {
-        image: "https://img.youtube.com/vi/-sAOWhvheK8/maxresdefault.jpg",
-        videoUrl: 'https://www.youtube.com/watch?v=-sAOWhvheK8'
-    },
-    {
-        image: "https://img.youtube.com/vi/1pHDWnXmK7Y/maxresdefault.jpg",
-        videoUrl: 'https://www.youtube.com/watch?v=1pHDWnXmK7Y'
-    },
-    {
-        image: "https://img.youtube.com/vi/umiKiW4En9g/maxresdefault.jpg",
-        videoUrl: 'https://www.youtube.com/watch?v=umiKiW4En9g'
-    },
-]
+  {
+    title: "Thunderbolts Final Trailer",
+    videoId: "WpW36ldAqnM",
+    image: "https://img.youtube.com/vi/WpW36ldAqnM/hqdefault.jpg",
+  },
+  {
+    title: "Captain America Trailer",
+    videoId: "-sAOWhvheK8",
+    image: "https://img.youtube.com/vi/-sAOWhvheK8/hqdefault.jpg",
+  },
+  {
+    title: "What If Season 3",
+    videoId: "1pHDWnXmK7Y",
+    image: "https://img.youtube.com/vi/1pHDWnXmK7Y/hqdefault.jpg",
+  },
+  {
+    title: "Marvel Trailer",
+    videoId: "umiKiW4En9g",
+    image: "https://img.youtube.com/vi/umiKiW4En9g/hqdefault.jpg",
+  },
+];
 
 const dummyCastsData = [
     { "name": "Milla Jovovich", "profile_path": "https://image.tmdb.org/t/p/original/usWnHCzbADijULREZYSJ0qfM00y.jpg", },

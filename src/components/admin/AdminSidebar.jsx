@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddShow = () => {
+const AdminSidebar = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const AddShow = () => {
   )
 }
 
-export default AddShow
+export default AdminSidebar

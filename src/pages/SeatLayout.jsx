@@ -112,9 +112,13 @@ const SeatLayout = () => {
             Select your seat
           </h1>
 
-          <div className="w-full max-w-[600px] mb-12">
-            <div className="h-4 rounded-full bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
-            <p className="text-center text-gray-400 mt-3 text-sm">
+          <div className="relative mb-16 flex flex-col items-center">
+            <div className=" w-[520px]
+      h-[40px]
+      border-t-[8px]
+      border-primary/60
+      rounded-[100%]" />
+            <p className="text-gray-400 text-sm mt-2">
               SCREEN SIDE
             </p>
           </div>

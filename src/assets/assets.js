@@ -1,9 +1,9 @@
+import appStore from './appStore.svg'
+import googlePlay from './googlePlay.svg'
 import logo from './logo.svg'
 import marvelLogo from './marvelLogo.svg'
-import googlePlay from './googlePlay.svg'
-import appStore from './appStore.svg'
-import screenImage from './screenImage.svg'
 import profile from './profile.png'
+import screenImage from './screenImage.svg'
 
 export const assets = {
     logo,
@@ -222,6 +222,36 @@ export const dummyDateTimeData = {
         { "time": "2025-07-27T05:00:00.000Z", "showId": "68395b407f6329be2bb45bdc" }
     ]
 }
+
+export const dummyBookingsData = [
+  {
+    _id: "bkg-001",
+    amount: 129,
+    bookedSeats: ["A1", "A2"],
+    show: {
+      movie: dummyShowsData[0],
+      showDateTime: "2025-07-24T01:00:00.000Z",
+    },
+  },
+  {
+    _id: "bkg-002",
+    amount: 198,
+    bookedSeats: ["D3", "D4"],
+    show: {
+      movie: dummyShowsData[1],
+      showDateTime: "2025-07-25T03:00:00.000Z",
+    },
+  },
+  {
+    _id: "bkg-003",
+    amount: 255,
+    bookedSeats: ["F5"],
+    show: {
+      movie: dummyShowsData[2],
+      showDateTime: "2025-07-26T05:00:00.000Z",
+    },
+  },
+];
 
 export const dummyDashboardData = {
     "totalBookings": 14,

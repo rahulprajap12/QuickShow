@@ -16,23 +16,23 @@ import Releases from './pages/Releases'
 import SeatLayout from './pages/SeatLayout'
 import Theaters from './pages/Theaters'
 
-
 const App = () => {
   const isAdminRoute = useLocation().pathname.startsWith('/admin')
+
   return (
     <>
-      <Toaster />
+      <Toaster position="top-center" />
       {!isAdminRoute && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetail />} />
-        <Route path="/movies/:id/:date" element={<SeatLayout />} />
+        <Route path="/movies/:id/:showId" element={<SeatLayout />} />
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/theaters" element={<Theaters />} />
         <Route path="/releases" element={<Releases />} />
-        <Route path="/admin/*" element={<Layout />}>
+        <Route path="/admin" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="add-show" element={<AddShow />} />
           <Route path="list-shows" element={<ListShows />} />
@@ -40,7 +40,6 @@ const App = () => {
         </Route>
       </Routes>
       {!isAdminRoute && <Footer />}
-
     </>
   )
 }
